@@ -1,0 +1,11 @@
+course-api/.settings/*
+
+course-api/.classpath
+
+course-api/.project
+
+course-api/.springBeans
+
+course-api/target/*
+
+
