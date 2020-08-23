@@ -30,8 +30,6 @@ node{
 
 	stage('Artifactory configuration'){
 
-steps {
-
 script {
 rtMaven.tool ='Maven-3.6.3'
 
@@ -46,6 +44,5 @@ buildInfo = Artifactory.newBuildInfo()
 buildInfo.retention maxBuilds: 10, maxDays: 7, deleteBuildArtifacts: true
 
 buildInfo.env.capture = true
-}
 }
 	}
