@@ -1,8 +1,6 @@
 pipeline{
 	agent any
-def server = Artifactory.server('Artifactory Version 7.4.3')
-def rtMaven = Artifactory.newMavenBuild()
-   stage('SCM Checkout'){
+  stage('SCM Checkout'){
      git 'https://github.com/anikate-singhal/Test-pipeline'
    }
 	stage('Stage 1'){
@@ -32,6 +30,8 @@ def rtMaven = Artifactory.newMavenBuild()
 		}
 
 	stage('Artifactory configuration'){
+		def server = Artifactory.server('Artifactory Version 7.4.3')
+def rtMaven = Artifactory.newMavenBuild()
 rtMaven.tool ='Maven-3.6.3'
 
 rtMaven.deployer releaseRepo: 'Jenkins-integration', 'Jenkins-integrations', server: server
