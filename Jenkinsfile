@@ -33,7 +33,7 @@ node{
 steps {
 
 script {
-rtMaven.tool ='Maven-3.5.3'
+rtMaven.tool ='Maven-3.6.3'
 
 rtMaven.deployer releaseRepo: 'Jenkins-integration', 'Jenkins-integrations', server: server
 
