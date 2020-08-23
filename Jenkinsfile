@@ -22,9 +22,31 @@ node{
 	   bat "mvn install"
    }
 	stage('SonarQube Analysis'){
-		withSonarQubeEnv('SonarQube7.1'){
+		//withSonarQubeEnv('SonarQube7.1'){
 		//	bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar'
-			bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
+		//	bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
 		}
    }
+
+	stage('Artifactory configuration'){
+
+steps {
+
+script {
+rtMaven.tool ='Maven-3.5.3'
+
+rtMaven.deployer releaseRepo: 'libs-release-local', 'libs-snapshot-local', server: server
+
+rtMaven.resolver releaseRepo:'libs-release', snapshotRepo: 'libs-snapshot', server: server
+
+rtMaven deployer.artifactDeploymentPatterns.addExclude("pom.xml")
+
+buildInfo = Artifactory.newBuildInfo()
+
+buildInfo.retention maxBuilds: 10, maxDays: 7, deleteBuildArtifacts: true
+
+buildInfo.env.capture = true
+}
+}
+	}
 }
