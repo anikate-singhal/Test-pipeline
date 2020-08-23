@@ -1,5 +1,6 @@
 pipeline{
 	agent any
+	stages{
   stage('SCM Checkout'){
      git 'https://github.com/anikate-singhal/Test-pipeline'
    }
@@ -45,5 +46,6 @@ buildInfo = Artifactory.newBuildInfo()
 buildInfo.retention maxBuilds: 10, maxDays: 7, deleteBuildArtifacts: true
 
 buildInfo.env.capture = true
+}
 }
 }
