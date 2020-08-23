@@ -35,9 +35,9 @@ steps {
 script {
 rtMaven.tool ='Maven-3.5.3'
 
-rtMaven.deployer releaseRepo: 'libs-release-local', 'libs-snapshot-local', server: server
+rtMaven.deployer releaseRepo: 'Jenkins-integration', 'Jenkins-integrations', server: server
 
-rtMaven.resolver releaseRepo:'libs-release', snapshotRepo: 'libs-snapshot', server: server
+rtMaven.resolver releaseRepo:'Jenkins-integration', snapshotRepo: 'Jenkins-integrations', server: server
 
 rtMaven deployer.artifactDeploymentPatterns.addExclude("pom.xml")
 
