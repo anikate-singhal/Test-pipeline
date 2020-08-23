@@ -1,3 +1,5 @@
+def server = Artifactory.server('Artifactory Version 7.4.3')
+def rtMaven = Artifactory.newMavenBuild()
 node{
    stage('SCM Checkout'){
      git 'https://github.com/anikate-singhal/Test-pipeline'
@@ -8,7 +10,8 @@ node{
 	stage('Stage 2'){
     echo "world"
    }
-   stage('Compile-Package'){
+  
+	stage('Compile-Package'){
       // Get maven home path
     //  def mvnHome =  tool name: 'MAVENLOCAL', type: 'maven'  
 
