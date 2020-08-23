@@ -23,7 +23,8 @@ node{
    }
 	stage('SonarQube Analysis'){
 		withSonarQubeEnv('SonarQube7.1'){
-			bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar'
+		//	bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.3.0.603:sonar'
+			bat 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
 		}
    }
 }
