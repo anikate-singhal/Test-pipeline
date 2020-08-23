@@ -49,4 +49,3 @@ buildInfo.env.capture = true
 }
 }
 	}
-}
