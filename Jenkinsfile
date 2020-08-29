@@ -1,5 +1,6 @@
 def server = Artifactory.server('Artifactory Version 7.4.3')
 def rtMaven = Artifactory.newMavenBuild()
+def buildInfo = Artifactory.newBuildInfo()
 pipeline{
 	agent any
 	stages{
@@ -62,15 +63,11 @@ pipeline{
 		stage('Artifactory configuration'){
 			steps {
             			script{
-     					rtMaven.tool ="Maven-3.6.3"
-
-rtMaven.deployer releaseRepo: 'Jenkins-integration', snapshotRepo: 'Jenkins-integrations', server: server
-
-rtMaven.resolver releaseRepo:'Jenkins-integration', snapshotRepo: 'Jenkins integrations', server: server
-
-					rtMaven deployer.artifactDeploymentPatterns.addExclude("pom.xml")
-
-					buildInfo = Artifactory.newBuildInfo()
+     					rtMaven.tool = 'Maven-3.6.3'
+					rtMaven.deployer releaseRepo:'libs-release-local', snapshotRepo:'libs-snapshot-local', server: server					
+					rtMaven.resolver releaseRepo:'libs-release', snapshotRepo:'libs-snapshot', server: server
+					rtMaven.run pom: ‘pom.xml’, goals: ‘clean install -Dmaven.test.skip=true’, buildInfo: buildInfo
+					publishBuildInfo server: server, buildInfo: buildInfo
 		  			}
 	       			}
        		}
