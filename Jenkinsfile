@@ -66,6 +66,7 @@ pipeline{
      					rtMaven.tool = 'Maven-3.6.3'
 					rtMaven.deployer releaseRepo:'libs-release-local', snapshotRepo:'libs-snapshot-local', server: server					
 					rtMaven.resolver releaseRepo:'libs-release', snapshotRepo:'libs-snapshot', server: server
+					rtMaven.tool = 'MAVENLOCAL'
 					rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
 					publishBuildInfo server: server, buildInfo: buildInfo
 		  			}
