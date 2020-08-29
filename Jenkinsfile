@@ -43,7 +43,7 @@ pipeline{
      					//       } else {
        					//        bat(/"${mvnHome}\bin\mvn" -Dmaven.test.failure.ignore clean package/)
          					//   }
-	   				bat "mvn install"
+	   				bat "mvn clean install"
 					}
    				}
 		}
@@ -66,7 +66,7 @@ pipeline{
      					rtMaven.tool = 'Maven-3.6.3'
 					rtMaven.deployer releaseRepo:'libs-release-local', snapshotRepo:'libs-snapshot-local', server: server					
 					rtMaven.resolver releaseRepo:'libs-release', snapshotRepo:'libs-snapshot', server: server
-					rtMaven.run pom: ‘pom.xml’, goals: ‘clean install -Dmaven.test.skip=true’, buildInfo: buildInfo
+					rtMaven.run pom: 'pom.xml', goals: 'clean install', buildInfo: buildInfo
 					publishBuildInfo server: server, buildInfo: buildInfo
 		  			}
 	       			}
