@@ -66,7 +66,7 @@ pipeline{
 
 					rtMaven.deployer releaseRepo: 'Jenkins-integration', 'Jenkins-integrations', server: server
 
-					rtMaven.resolver releaseRepo:'Jenkins-integration', snapshotRepo: 'Jenkins integrations', 					server: server
+					rtMaven.resolver releaseRepo:'Jenkins-integration', snapshotRepo: 'Jenkins integrations', server: server
 
 					rtMaven deployer.artifactDeploymentPatterns.addExclude("pom.xml")
 
